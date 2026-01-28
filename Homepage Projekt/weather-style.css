@@ -1,0 +1,431 @@
+@import url('https://fonts.googleapis.com/css2?family=Pixelify+Sans:wght@400..700&display=swap');
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Pixelify Sans', sans-serif;
+    background: #fff;
+    color: #000;
+    min-height: 100vh;
+    padding: 2rem;
+    transition: background 0.5s ease, color 0.5s ease;
+}
+
+body.dark-mode {
+    background: #000;
+    color: #fff;
+}
+
+/* ---------------- THEME SWITCH ---------------- */
+
+.theme-control {
+    position: fixed;
+    top: 2rem;
+    right: 2rem;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0.5rem;
+    z-index: 1000;
+}
+
+.theme-label {
+    font-size: 0.7rem;
+    font-weight: 600;
+    letter-spacing: 0.05em;
+}
+
+.switch {
+    position: relative;
+    width: 35px;
+    height: 18px;
+}
+
+.switch input {
+    opacity: 0;
+    width: 0;
+    height: 0;
+}
+
+.slider {
+    position: absolute;
+    inset: 0;
+    cursor: pointer;
+    background-color: #000;
+    transition: 0.4s;
+    border-radius: 34px;
+}
+
+.slider:before {
+    content: "";
+    position: absolute;
+    height: 14px;
+    width: 14px;
+    left: 2px;
+    bottom: 2px;
+    background-color: #fff;
+    transition: 0.4s;
+    border-radius: 50%;
+}
+
+input:checked + .slider {
+    background-color: #fff;
+}
+
+input:checked + .slider:before {
+    transform: translateX(17px);
+    background-color: #000;
+}
+
+/* ---------------- NAV ---------------- */
+
+.nav {
+    margin-bottom: 2rem;
+}
+
+.back-link {
+    display: inline-block;
+    padding: 0.5rem 1.5rem;
+    border: 2px solid #000;
+    color: #000;
+    text-decoration: none;
+    border-radius: 50px;
+    transition: all 0.3s ease;
+}
+
+.back-link:hover {
+    background: #000;
+    color: #fff;
+}
+
+body.dark-mode .back-link {
+    border-color: #fff;
+    color: #fff;
+}
+
+body.dark-mode .back-link:hover {
+    background: #fff;
+    color: #000;
+}
+
+/* ---------------- WEATHER ---------------- */
+
+.weather-container {
+    max-width: 1000px;
+    margin: 0 auto;
+    text-align: center;
+}
+
+h1 {
+    font-size: 3rem;
+    margin-bottom: 2rem;
+}
+
+.search-box {
+    display: flex;
+    justify-content: center;
+    gap: 0.5rem;
+    margin-bottom: 2.5rem;
+    align-items: flex-start;
+}
+
+.search-field {
+    position: relative;
+    width: 220px;
+}
+
+.search-box input {
+    width: 100%;
+    padding: 0.7rem 1rem;
+    border: 2px solid #000;
+    border-radius: 50px;
+    font-family: inherit;
+    font-size: 0.9rem;
+}
+
+/* Search Button (Light Mode) */
+.search-box button {
+    padding: 0.7rem 1.4rem;
+    border-radius: 50px;
+    border: none;
+    background: #000;
+    color: #fff;
+    cursor: pointer;
+    transition: all 0.3s ease;
+
+    /* correct font */
+    font-family: inherit;
+    font-weight: 600;
+    letter-spacing: 0.05em;
+}
+
+.search-box button:hover {
+    background: #333;
+}
+
+/* ✅ Search Button (Dark Mode) */
+body.dark-mode .search-box button {
+    background: #fff;
+    color: #000;
+}
+
+body.dark-mode .search-box button:hover {
+    background: #ddd;
+}
+
+/* ---------------- SUGGESTIONS ---------------- */
+
+.suggestions {
+    position: absolute;
+    top: calc(100% + 8px);
+    left: 0;
+    right: 0;
+    display: none;
+    text-align: left;
+    border: 2px solid #000;
+    border-radius: 12px;
+    background: #fff;
+    overflow: hidden;
+    z-index: 50;
+}
+
+body.dark-mode .suggestions {
+    background: #111;
+    border-color: #333;
+}
+
+.suggestion-item {
+    padding: 0.7rem 1rem;
+    cursor: pointer;
+    font-size: 0.9rem;
+}
+
+.suggestion-item:hover,
+.suggestion-item.active {
+    background: #f0f0f0;
+}
+
+body.dark-mode .suggestion-item:hover,
+body.dark-mode .suggestion-item.active {
+    background: #222;
+}
+
+/* ---------------- WEATHER GRID ---------------- */
+
+.weather-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+    gap: 1.5rem;
+}
+
+.weather-card {
+    border: 2px solid #000;
+    border-radius: 12px;
+    padding: 1.5rem;
+    position: relative;
+    animation: fadeInUp 0.6s ease-out both;
+
+    cursor: pointer;
+    transition: transform 0.2s ease;
+}
+
+.weather-card:hover {
+    transform: translateY(-3px);
+}
+
+body.dark-mode .weather-card {
+    border-color: #333;
+    background: #111;
+}
+
+.weather-card h2 {
+    font-size: 1.4rem;
+    margin-bottom: 0.5rem;
+}
+
+.temp {
+    font-size: 2.2rem;
+    margin: 0.5rem 0;
+}
+
+.desc {
+    opacity: 0.7;
+    text-transform: capitalize;
+}
+
+/* Remove Button */
+.remove-btn {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    width: 30px;
+    height: 30px;
+    border-radius: 999px;
+    border: 2px solid #000;
+    background: transparent;
+    cursor: pointer;
+    font-family: inherit;
+    font-size: 1rem;
+    line-height: 1;
+    display: grid;
+    place-items: center;
+    transition: all 0.2s ease;
+    color: #000;
+}
+
+.remove-btn:hover {
+    transform: translateY(-2px);
+}
+
+body.dark-mode .remove-btn {
+    border-color: #fff;
+    color: #fff;
+}
+
+body.dark-mode .remove-btn:hover {
+    background: #fff;
+    color: #000;
+}
+
+/* ---------------- MODAL (THIS FIXES YOUR BUG) ---------------- */
+
+.modal-overlay {
+    position: fixed;
+    inset: 0;
+    background: rgba(0,0,0,0.5);
+    display: none;              /* ✅ IMPORTANT: hidden by default */
+    align-items: center;
+    justify-content: center;
+    padding: 1.5rem;
+    z-index: 2000;
+}
+
+.modal {
+    width: 100%;
+    max-width: 560px;
+    border: 2px solid #000;
+    border-radius: 14px;
+    background: #fff;
+    padding: 1.5rem;
+    text-align: left;
+    position: relative;
+}
+
+body.dark-mode .modal {
+    background: #111;
+    border-color: #333;
+}
+
+.modal-close {
+    position: absolute;
+    top: 12px;
+    right: 12px;
+    width: 34px;
+    height: 34px;
+    border-radius: 999px;
+    border: 2px solid #000;
+    background: transparent;
+    font-family: inherit;
+    font-weight: 600;
+    cursor: pointer;
+    display: grid;
+    place-items: center;
+}
+
+body.dark-mode .modal-close {
+    border-color: #fff;
+    color: #fff;
+}
+
+body.dark-mode .modal-close:hover {
+    background: #fff;
+    color: #000;
+}
+
+.modal-sub {
+    opacity: 0.6;
+    margin-top: 0.2rem;
+    margin-bottom: 1rem;
+}
+
+.modal-main {
+    display: flex;
+    align-items: baseline;
+    justify-content: space-between;
+    gap: 1rem;
+    margin-bottom: 1rem;
+}
+
+.modal-temp {
+    font-size: 2.4rem;
+}
+
+.modal-desc {
+    opacity: 0.7;
+    text-transform: capitalize;
+}
+
+.modal-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 0.8rem;
+    margin-top: 0.8rem;
+}
+
+.info-item {
+    border: 2px solid #000;
+    border-radius: 12px;
+    padding: 0.8rem;
+}
+
+body.dark-mode .info-item {
+    border-color: #333;
+}
+
+.info-label {
+    opacity: 0.6;
+    font-size: 0.85rem;
+    margin-bottom: 0.2rem;
+}
+
+.info-value {
+    font-size: 1rem;
+}
+
+/* ---------------- ANIMATION ---------------- */
+
+@keyframes fadeInUp {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* ---------------- MOBILE ---------------- */
+
+@media (max-width: 600px) {
+    h1 {
+        font-size: 2.2rem;
+    }
+
+    .search-box {
+        flex-direction: column;
+        align-items: stretch;
+    }
+
+    .search-field {
+        width: 100%;
+    }
+
+    .modal-grid {
+        grid-template-columns: 1fr;
+    }
+}
