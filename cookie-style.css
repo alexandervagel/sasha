@@ -1,0 +1,388 @@
+@import url('https://fonts.googleapis.com/css2?family=Pixelify+Sans:wght@400..700&display=swap');
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Pixelify Sans', sans-serif;
+    background: #fff;
+    color: #000;
+    min-height: 100vh;
+    padding: 2rem;
+    transition: background 0.5s ease, color 0.5s ease;
+}
+
+body.dark-mode {
+    background: #000;
+    color: #fff;
+}
+
+/* ---------------- THEME SWITCH ---------------- */
+
+.theme-control {
+    position: fixed;
+    top: 2rem;
+    right: 2rem;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0.5rem;
+    z-index: 1000;
+}
+
+.theme-label {
+    font-size: 0.7rem;
+    font-weight: 600;
+    letter-spacing: 0.05em;
+}
+
+.switch {
+    position: relative;
+    display: inline-block;
+    width: 35px;
+    height: 18px;
+}
+
+.switch input {
+    opacity: 0;
+    width: 0;
+    height: 0;
+}
+
+.slider {
+    position: absolute;
+    cursor: pointer;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: #000;
+    transition: 0.4s;
+    border-radius: 34px;
+}
+
+.slider:before {
+    position: absolute;
+    content: "";
+    height: 14px;
+    width: 14px;
+    left: 2px;
+    bottom: 2px;
+    background-color: #fff;
+    transition: 0.4s;
+    border-radius: 50%;
+}
+
+input:checked + .slider {
+    background-color: #fff;
+}
+
+input:checked + .slider:before {
+    transform: translateX(17px);
+    background-color: #000;
+}
+
+/* ---------------- NAV ---------------- */
+
+.nav {
+    margin-bottom: 2rem;
+    animation: fadeIn 1s ease-out;
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; transform: translateY(-10px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+.back-link {
+    display: inline-block;
+    padding: 0.5rem 1.5rem;
+    border: 2px solid #000;
+    color: #000;
+    text-decoration: none;
+    border-radius: 50px;
+    font-size: 0.9rem;
+    transition: all 0.3s ease;
+}
+
+.back-link:hover {
+    background: #000;
+    color: #fff;
+}
+
+body.dark-mode .back-link {
+    color: #fff;
+    border-color: #fff;
+}
+
+body.dark-mode .back-link:hover {
+    background: #fff;
+    color: #000;
+}
+
+/* ---------------- LAYOUT ---------------- */
+
+.cookie-container {
+    max-width: 1100px;
+    margin: 0 auto;
+    animation: fadeIn 1.2s ease-out;
+    text-align: center;
+}
+
+h1 {
+    font-size: 3rem;
+    margin-bottom: 2rem;
+}
+
+.layout {
+    display: grid;
+    grid-template-columns: 1.2fr 1fr;
+    gap: 1.5rem;
+    align-items: start;
+}
+
+.panel {
+    border: 2px solid #000;
+    border-radius: 14px;
+    padding: 1.5rem;
+    text-align: left;
+}
+
+body.dark-mode .panel {
+    background: #111;
+    border-color: #333;
+}
+
+/* ---------------- MAIN PANEL ---------------- */
+
+.stats {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1rem;
+    margin-bottom: 1.2rem;
+}
+
+.stat {
+    border: 2px solid #000;
+    border-radius: 12px;
+    padding: 0.9rem;
+}
+
+body.dark-mode .stat {
+    border-color: #333;
+}
+
+.stat-label {
+    opacity: 0.6;
+    font-size: 0.85rem;
+    margin-bottom: 0.2rem;
+}
+
+.stat-value {
+    font-size: 1.4rem;
+}
+
+.cookie-btn {
+    width: 100%;
+    border: 2px solid #000;
+    border-radius: 16px;
+    background: #f5f5f5;
+    padding: 2.2rem 1rem;
+    font-size: 4rem;
+    cursor: pointer;
+    transition: transform 0.08s ease, background 0.2s ease;
+    user-select: none;
+    margin-bottom: 1rem;
+    font-family: inherit;
+}
+
+.cookie-btn:hover {
+    background: #eaeaea;
+    transform: translateY(-2px);
+}
+
+.cookie-btn:active {
+    transform: translateY(0px) scale(0.98);
+}
+
+body.dark-mode .cookie-btn {
+    background: #1a1a1a;
+    border-color: #333;
+}
+
+body.dark-mode .cookie-btn:hover {
+    background: #222;
+}
+
+.actions {
+    display: flex;
+    gap: 0.7rem;
+    margin-top: 0.6rem;
+    flex-wrap: wrap;
+}
+
+.btn {
+    display: inline-block;
+    padding: 0.7rem 1.4rem;
+    border-radius: 50px;
+    border: 2px solid #000;
+    background: #000;
+    color: #fff;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    font-family: inherit;
+    font-weight: 600;
+    letter-spacing: 0.05em;
+}
+
+.btn:hover {
+    background: #333;
+    transform: translateY(-2px);
+}
+
+.btn.secondary {
+    background: #f0f0f0;
+    color: #000;
+}
+
+.btn.secondary:hover {
+    background: #e0e0e0;
+}
+
+.btn.danger {
+    background: #000;
+    color: #fff;
+}
+
+body.dark-mode .btn {
+    border-color: #333;
+}
+
+body.dark-mode .btn.secondary {
+    background: #222;
+    color: #fff;
+}
+
+body.dark-mode .btn.secondary:hover {
+    background: #2b2b2b;
+}
+
+body.dark-mode .btn.danger {
+    background: #fff;
+    color: #000;
+    border-color: #fff;
+}
+
+body.dark-mode .btn.danger:hover {
+    background: #ddd;
+}
+
+.hint {
+    margin-top: 1rem;
+    opacity: 0.6;
+    font-size: 0.9rem;
+}
+
+/* ---------------- SHOP ---------------- */
+
+.shop-header h2 {
+    font-size: 1.6rem;
+    margin-bottom: 0.3rem;
+}
+
+.shop-sub {
+    opacity: 0.6;
+    margin-bottom: 1rem;
+}
+
+.shop-list {
+    display: flex;
+    flex-direction: column;
+    gap: 0.8rem;
+}
+
+.shop-item {
+    border: 2px solid #000;
+    border-radius: 12px;
+    padding: 1rem;
+    display: grid;
+    grid-template-columns: 1fr auto;
+    gap: 0.8rem;
+    align-items: center;
+    background: #fff;
+}
+
+body.dark-mode .shop-item {
+    background: #111;
+    border-color: #333;
+}
+
+.shop-title {
+    font-size: 1.2rem;
+    margin-bottom: 0.2rem;
+}
+
+.shop-desc {
+    opacity: 0.6;
+    font-size: 0.9rem;
+    margin-bottom: 0.5rem;
+}
+
+.shop-meta {
+    display: flex;
+    gap: 0.8rem;
+    flex-wrap: wrap;
+    opacity: 0.8;
+    font-size: 0.9rem;
+}
+
+.buy-btn {
+    padding: 0.7rem 1.2rem;
+    border-radius: 50px;
+    border: none;
+    background: #000;
+    color: #fff;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    font-family: inherit;
+    font-weight: 600;
+    letter-spacing: 0.05em;
+    white-space: nowrap;
+}
+
+.buy-btn:hover {
+    background: #333;
+    transform: translateY(-2px);
+}
+
+.buy-btn:disabled {
+    opacity: 0.4;
+    cursor: not-allowed;
+    transform: none;
+}
+
+body.dark-mode .buy-btn {
+    background: #fff;
+    color: #000;
+}
+
+body.dark-mode .buy-btn:hover {
+    background: #ddd;
+}
+
+/* ---------------- MOBILE ---------------- */
+
+@media (max-width: 900px) {
+    .layout {
+        grid-template-columns: 1fr;
+    }
+}
+
+@media (max-width: 600px) {
+    h1 { font-size: 2.2rem; }
+    body { padding: 1rem; }
+    .stats { grid-template-columns: 1fr; }
+}

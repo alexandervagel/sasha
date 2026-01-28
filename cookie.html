@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cookie Clicker - Alexander Vagel</title>
+    <link rel="stylesheet" href="cookie-style.css">
+</head>
+<body>
+    <div class="theme-control">
+        <label class="theme-label">Dark Mode</label>
+        <label class="switch">
+            <input type="checkbox" class="theme-toggle" aria-label="Toggle theme">
+            <span class="slider"></span>
+        </label>
+    </div>
+
+    <nav class="nav">
+        <a href="projects.html" class="back-link">← Back to Projects</a>
+    </nav>
+
+    <div class="cookie-container">
+        <h1>Cookie Clicker</h1>
+
+        <div class="layout">
+            <!-- Left: Cookie -->
+            <section class="panel main-panel">
+                <div class="stats">
+                    <div class="stat">
+                        <div class="stat-label">Cookies</div>
+                        <div class="stat-value" id="cookies">0</div>
+                    </div>
+                    <div class="stat">
+                        <div class="stat-label">Per second</div>
+                        <div class="stat-value" id="cps">0</div>
+                    </div>
+                </div>
+
+                <button class="cookie-btn" id="cookie-btn" aria-label="Click cookie">
+                    🍪
+                </button>
+
+                <div class="actions">
+                    <button class="btn secondary" id="save-btn">Save</button>
+                    <button class="btn danger" id="reset-btn">Reset</button>
+                </div>
+
+                <p class="hint">Auto-save is enabled. Your progress is saved in your browser.</p>
+            </section>
+
+            <!-- Right: Shop -->
+            <section class="panel shop-panel">
+                <div class="shop-header">
+                    <h2>Shop</h2>
+                    <p class="shop-sub">Buy upgrades to earn more cookies.</p>
+                </div>
+
+                <div class="shop-list" id="shop-list"></div>
+            </section>
+        </div>
+    </div>
+
+    <script src="cookie-script.js"></script>
+</body>
+</html>
